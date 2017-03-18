@@ -1,3 +1,11 @@
+{% load custom_tags %}
+
+<!-- Include blogs/blog123.html -->
+{% xinclude "blogs/blog{}.html" 123 %}
+
+<!-- Include blogs/blog456.html -->
+{% xinclude "blogs/blog{}.html" 456 %}
+
 {%  for field in form %}
     <p>{{ field.label_tag }}<br>{{ field }}</p>
 {% endfor %}

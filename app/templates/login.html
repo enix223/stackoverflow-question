@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form action="{% url 'accounts:login' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="username">
+    <input type="text" name="password">
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>

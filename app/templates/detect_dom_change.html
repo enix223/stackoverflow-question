@@ -1,0 +1,59 @@
+<script type="text/javascript">
+    'use strict';
+
+    // create an observer instance
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            for (var i = 0; i < mutation.addedNodes.length; i ++){
+                var item = mutation.addedNodes[i];
+                if (item.tagName === 'SCRIPT') {
+                    var s = document.querySelector('script[src="/static/js/dom-change.js"]');
+                    if (s !== null) {
+                        s.parentNode.removeChild(s);
+                        console.log("Removing script...");
+                        console.log(item);
+                    }
+                }
+            }
+        });
+    });
+
+    //setTimeout(function(){
+        // select the target node
+        var target = document.head;
+               
+        // configuration of the observer:
+        var config = { attributes: true, childList: true, characterData: true };
+       
+        // pass in the target node, as well as the observer options
+        observer.observe(target, config);
+    //}, 1);
+
+
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        function loadScript(url, callback){
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.onload = function() {
+                callback();
+            }
+            script.src = url;
+            document.getElementsByTagName('head')[0].appendChild(script);
+            script.
+        }
+
+        loadScript('/static/js/dom-change.js', function(){
+            console.log('script loaded.');
+        });
+    </script>
+    <title></title>
+</head>
+<body>
+<div id="wrapper"></div>
+</body>
+</html>
